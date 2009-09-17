@@ -1,0 +1,12 @@
+{% if blog_posts %}
+    <ul>
+    {% for post in blog_posts %}
+        <li>
+            <b>{{ post.title }}</b> ({{ post.pub_date }})<br/>
+            {{ post.content }}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No posts are available.</p>
+{% endif %}
