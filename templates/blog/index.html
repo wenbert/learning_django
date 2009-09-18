@@ -6,7 +6,7 @@ Welcome...
             <b>
             <a href="/blog/post/{{ post.id }}">{{ post.title }}</a>
             </b> ({{ post.pub_date }})<br/>
-            {{ post.content }}<br/>
+            {{ post.content }} ( {{ comment_count }})<br/>
             by: {{ post.author }}<br/><br/>
         </li>
     {% endfor %}
