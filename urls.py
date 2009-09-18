@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
+    (r'^admin/(.*)', admin.site.root),
     (r'^blog/$','mysite.blog.views.index'),
+    (r'^blog/post/(?P<blog_id>\d+)/$','mysite.blog.views.post'),
 )

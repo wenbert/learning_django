@@ -1,0 +1,17 @@
+{% if post %}
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+<p>by: {{ post.author }} | on: {{ post.pub_date }}</p>
+
+    {% if comments %}
+    COMMENTS<br/>
+    <ul>
+        {% for comment in comments %}
+            <li>
+            {{comment.author }} said...<br/>
+            {{ comment.comment }} ({{comment.pub_date}})
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endif %}

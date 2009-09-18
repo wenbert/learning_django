@@ -1,9 +1,13 @@
+Welcome...
 {% if blog_posts %}
     <ul>
     {% for post in blog_posts %}
         <li>
-            <b>{{ post.title }}</b> ({{ post.pub_date }})<br/>
-            {{ post.content }}
+            <b>
+            <a href="/blog/post/{{ post.id }}">{{ post.title }}</a>
+            </b> ({{ post.pub_date }})<br/>
+            {{ post.content }}<br/>
+            by: {{ post.author }}<br/><br/>
         </li>
     {% endfor %}
     </ul>
