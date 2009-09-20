@@ -4,7 +4,7 @@
 <p>by: {{ post.author }} | on: {{ post.pub_date }}</p>
 
     {% if comments %}
-    {{ comment_count }} COMMENT(S)<br/>
+    There are {{ comment_count }} comment(s) for this post.<br/>
     <ul>
         {% for comment in comments %}
             <li>
@@ -13,5 +13,7 @@
             </li>
         {% endfor %}
     </ul>
+    {% else %}
+    No comments for this post.
     {% endif %}
 {% endif %}
