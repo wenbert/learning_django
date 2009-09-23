@@ -8,7 +8,7 @@
     <ul>
         {% for comment in comments %}
             <li>
-            {{comment.author }} said...<br/>
+            <a href="{{ comment.url }}">{{ comment.author }}</a> said...<br/>
             {{ comment.comment }} ({{comment.pub_date}})
             </li>
         {% endfor %}
@@ -16,4 +16,15 @@
     {% else %}
     No comments for this post.
     {% endif %}
+    
+    
+    <table>
+    {{ comment_form }}
+    <tr>
+        <td colspan="2">
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </td>
+    </tr>
+    </table>
 {% endif %}

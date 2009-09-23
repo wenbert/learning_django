@@ -16,6 +16,7 @@ class Comment(models.Model):
     blog = models.ForeignKey(Blog)
     author = models.CharField(max_length=200)
     comment = models.TextField()
+    url = models.URLField()
     pub_date = models.DateTimeField('date published')
     
     def __unicode__(self):
