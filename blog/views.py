@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response
-from django.http import Http404
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.db.models import Count
 from mysite.blog.models import Blog
 from mysite.blog.models import Comment
@@ -13,14 +13,38 @@ def index(request):
 
 def post(request,blog_id):
     try:
-        post = Blog.objects.get(pk=blog_id)
+        blogpost = Blog.objects.get(pk=blog_id)
         comments = Comment.objects.filter(blog__pk=blog_id)
         comment_count = comments.count()
         comment_form = CommentForm()
+        
+        if request.method == 'POST' :
+            comment = Comment()
+            comment.blog_id  = blog_id
+            comment.author   = request.POST['author']
+            comment.comment  = request.POST['comment']
+            comment.url      = request.POST['url']
+            comment.pub_date = request.POST['pub_date']
+            comment.save()
+            return HttpResponseRedirect('/blog/post/'+blog_id)
+            
     except Blog.DoesNotExist:
-        raise Http404
+        raise Http404            
+    
     return render_to_response('blog/post.html', 
-                             {'post': post, 
+                             {'blogpost': blogpost, 
                               'comments': comments, 
                               'comment_count': comment_count,
                               'comment_form': comment_form})
+        
+
+    
+
+
+def display_meta(request):
+    values = request.META.items()
+    values.sort()
+    html = []
+    for k, v in values:
+        html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v))
+    return HttpResponse('<table>%s</table>' % '\n'.join(html))

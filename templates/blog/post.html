@@ -1,7 +1,7 @@
-{% if post %}
-<h1>{{ post.title }}</h1>
-<p>{{ post.content }}</p>
-<p>by: {{ post.author }} | on: {{ post.pub_date }}</p>
+{% if blogpost %}
+<h1>{{ blogpost.title }}</h1>
+<p>{{ blogpost.content }}</p>
+<p>by: {{ blogpost.author }} | on: {{ blogpost.pub_date }}</p>
 
     {% if comments %}
     There are {{ comment_count }} comment(s) for this post.<br/>
@@ -17,7 +17,7 @@
     No comments for this post.
     {% endif %}
     
-    
+    <form action="/blog/post/{{blogpost.id}}/" method="post">
     <table>
     {{ comment_form }}
     <tr>
@@ -27,4 +27,5 @@
         </td>
     </tr>
     </table>
+    </form>
 {% endif %}
