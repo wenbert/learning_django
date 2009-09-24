@@ -66,7 +66,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATE_DIRS = (
-    '/pydocs/mysite/templates',
+    '/home/wdelrosa/pydocs/mysite/templates',
 )
 
 INSTALLED_APPS = (
