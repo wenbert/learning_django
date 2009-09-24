@@ -22,6 +22,13 @@
     {{ comment_form }}
     <tr>
         <td colspan="2">
+            {% if errors %}
+                <ul>
+                    {% for error in errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
             <input type="submit" value="Submit">
             <input type="reset" value="Reset">
         </td>

@@ -19,14 +19,27 @@ def post(request,blog_id):
         comment_form = CommentForm()
         
         if request.method == 'POST' :
-            comment = Comment()
-            comment.blog_id  = blog_id
-            comment.author   = request.POST['author']
-            comment.comment  = request.POST['comment']
-            comment.url      = request.POST['url']
-            comment.pub_date = request.POST['pub_date']
-            comment.save()
-            return HttpResponseRedirect('/blog/post/'+blog_id)
+            errors = []
+            if not request.POST['author']:
+                errors.append('Enter your name.')
+            elif not request.POST['comment']:
+                errors.append('Enter a comment.')
+            else:
+                comment = Comment()
+                comment.blog_id  = blog_id
+                comment.author   = request.POST['author']
+                comment.comment  = request.POST['comment']
+                comment.url      = request.POST['url']
+                comment.pub_date = request.POST['pub_date']
+                comment.save()
+                return HttpResponseRedirect('/blog/post/'+blog_id)
+            
+            return render_to_response('blog/post.html',
+                                      {'blogpost': blogpost, 
+                                      'comments': comments, 
+                                      'comment_count': comment_count,
+                                      'comment_form': comment_form,
+                                      'errors': errors})
             
     except Blog.DoesNotExist:
         raise Http404            
