@@ -15,6 +15,7 @@ class Blog(models.Model):
 class Comment(models.Model):
     blog = models.ForeignKey(Blog)
     author = models.CharField(max_length=200)
+    email = models.EmailField()
     comment = models.TextField()
     url = models.URLField()
     pub_date = models.DateTimeField('date published')
