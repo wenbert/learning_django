@@ -7,7 +7,7 @@ class Blog(models.Model):
     pub_date = models.DateTimeField('date published')
     
     def __unicode__(self):
-            return self.content
+            return self.title
             
     def was_published_today(self):
             return self.pub_date.date() == datetime.date.today()
@@ -21,6 +21,6 @@ class Comment(models.Model):
     pub_date = models.DateTimeField('date published')
     
     def __unicode__(self):
-            return self.comment
+            return self.author
     
     

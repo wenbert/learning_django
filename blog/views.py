@@ -33,6 +33,7 @@ def post(request,blog_id):
                 comment = Comment()
                 comment.blog_id  = blog_id
                 comment.author   = request.POST['author']
+                comment.email   = request.POST['email']
                 comment.comment  = request.POST['comment']
                 comment.url      = request.POST['url']
                 comment.pub_date = datetime.datetime.now()
